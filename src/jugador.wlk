@@ -7,21 +7,26 @@ object jugador {
     var estado = normal
     var racha = 0
 
+    //PREGUNTAR, DEVOLVEMOS UN RESULTADO Y TAMBIEN MODIFICAMOS, ESTA BIEN??
     method acertar() {
-        estado.procesarAcierto()
-        self.aumentarRacha()
-        self.cambiarEstado(
-            estado.estadoLuegoDeAcierto(racha)
-        )
+         
+        const puntos = estado.sumaPorAcierto()
+
+        self.aumentarRacha() //Aumenta la racha
+        self.cambiarEstado( //Cambia de estado
+            estado.estadoLuegoDeAcierto(racha) //Evalua en base a la racha que estado tiene que estar
+        ) 
+        return puntos
         
     }
 
     method errar() {
-        estado.procesarFallo()
+        const puntos = estado.restaPorFallo()
         self.reestablecerRacha()
         self.cambiarEstado(
             estado.estadoLuegoDeFallo() 
         )
+        return puntos
     }
 
     method aumentarRacha() {

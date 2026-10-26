@@ -1,0 +1,51 @@
+import src.jugador.*
+import src.interfazPrincipal.*
+import src.barraDeProgreso.*
+import  src.estados.*
+
+
+describe "Juego" {
+  test "El jugador acierta estando Normal" {
+    juego.procesarAcierto()
+    assert.equals(1, barraDeProgreso.progresoActual())
+  } 
+  test "El jugador falla estando Norma"{
+    juego.procesarAcierto()
+    juego.procesarFallo()
+    assert.equals(0, barraDeProgreso.progresoActual())
+  }
+  test "El jugador acierta estando Cebado"{
+    juego.procesarAcierto()
+    juego.procesarAcierto()
+    juego.procesarAcierto()
+    juego.procesarAcierto()
+    juego.procesarAcierto()
+    juego.procesarAcierto()
+    assert.equals(10, barraDeProgreso.progresoActual())
+  }
+    test "El jugador falla estando Cebado"{
+    juego.procesarAcierto()
+    juego.procesarAcierto()
+    juego.procesarAcierto()
+    juego.procesarAcierto()
+    juego.procesarAcierto()
+    juego.procesarFallo()
+    assert.equals(2, barraDeProgreso.progresoActual())
+  }
+
+  test "El jugador acierta estando Bajoneado"{
+    juego.procesarAcierto()
+    juego.procesarFallo()
+    juego.procesarAcierto()
+    assert.equals(0, barraDeProgreso.progresoActual())
+  }
+  test "El jugador falla estando Bajoneado"{
+    juego.procesarAcierto()
+    juego.procesarAcierto()
+    juego.procesarAcierto()
+    juego.procesarAcierto()
+    juego.procesarFallo()
+    juego.procesarFallo()
+    assert.equals(1, barraDeProgreso.progresoActual())
+  }
+}

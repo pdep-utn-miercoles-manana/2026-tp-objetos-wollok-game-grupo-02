@@ -10,13 +10,9 @@ class Estado{
 
     method cambiaDeEstadoDespuesDe() = cambiaDeEstadoDespuesDe 
 
-    method procesarAcierto() {
-        barraDeProgreso.aumentarProgreso(sumaPorAcierto)
-    }
-
-    method procesarFallo() {
-        barraDeProgreso.disminuirProgreso(restaPorFallo)
-    }
+    //getter
+    method sumaPorAcierto() = sumaPorAcierto
+    method restaPorFallo() = restaPorFallo
 }
 
 //const normal = new Estado(sumaPorAcierto = 1, restaPorFallo = 1, cambiaDeEstadoDespuesDe = 5)
