@@ -1,0 +1,43 @@
+import src.barraDeProgreso.*
+describe "BarraDeProgreso" {
+  test "Aumenta 20 desde 0" {
+    barraDeProgreso.aumentarProgreso(20)
+    assert.equals(20,barraDeProgreso.progresoActual())
+  }
+  test "Aumenta 110 desde 0" {
+    barraDeProgreso.aumentarProgreso(110)
+    assert.equals(100,barraDeProgreso.progresoActual())
+  }
+  test "Disminuye 10 desde 20" {
+    barraDeProgreso.aumentarProgreso(20)
+    barraDeProgreso.disminuirProgreso(10)
+    assert.equals(10,barraDeProgreso.progresoActual())
+  }
+  test "Disminuye 30 desde 20" {
+    barraDeProgreso.aumentarProgreso(20)
+    barraDeProgreso.disminuirProgreso(30)
+    assert.equals(0,barraDeProgreso.progresoActual())
+  }
+  test "La barra no esta completa"{
+    assert.notThat(barraDeProgreso.estaCompleta())
+  }
+  test "La barra esta completa" {
+    barraDeProgreso.aumentarProgreso(100)
+    assert.that(barraDeProgreso.estaCompleta())
+  }
+  
+}
+
+
+/*Test 5: la barra no está completa.
+
+Progreso inicial: 0.
+Resultado esperado: false.
+
+Test 6: la barra está completa.
+
+Aumentamos el progreso a 100.
+Resultado esperado: true.
+
+Podés utilizar assert.isTrue() y assert.isFalse().
+*/

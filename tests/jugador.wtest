@@ -1,0 +1,52 @@
+import src.jugador.*
+import src.estados.*
+
+describe "Jugador" {
+  test "El jugador comienza en estado normal" {
+    assert.equals(normal, jugador.estadoActual())
+  }
+  test "El jugador comienza con racha 0" {
+    assert.equals(0, jugador.rachaActual())
+  }
+  test "El jugador aumenta su racha al acertar" {
+    jugador.acertar()
+    assert.equals(1, jugador.rachaActual())
+  }
+  test "El jugador pasa a cebado después de 5 aciertos" {
+    jugador.acertar()
+    jugador.acertar()
+    jugador.acertar()
+    jugador.acertar()
+    jugador.acertar()
+    assert.equals(cebado, jugador.estadoActual())
+  }
+  test "El jugador pasa a bajoneado cuando falla" {
+    jugador.errar()
+    assert.equals(bajoneado, jugador.estadoActual())
+  }
+  test "El jugador reinicia su racha cuando falla" {
+    jugador.acertar()
+    jugador.acertar()
+    jugador.errar()
+    assert.equals(0,jugador.rachaActual())
+
+  }
+  test "El jugador vuelve a Normal cuando falla estando Cebado" {
+    jugador.acertar()
+    jugador.acertar()
+    jugador.acertar()
+    jugador.acertar()
+    jugador.acertar()
+    jugador.errar()
+    assert.equals(normal, jugador.estadoActual())
+   }
+  test "El jugador vuelve a Normal despues de 3 aciertos estando Bajoneado" {
+    jugador.errar()
+    jugador.acertar()
+    jugador.acertar()
+    jugador.acertar()
+    assert.equals(normal, jugador.estadoActual())
+   }
+
+
+}

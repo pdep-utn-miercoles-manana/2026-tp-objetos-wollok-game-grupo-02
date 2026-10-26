@@ -1,0 +1,36 @@
+import src.estados.*
+
+describe "Estado Normal" {
+
+    test "Con 4 aciertos permanece Normal" {
+        assert.equals(normal, normal.estadoLuegoDeAcierto(4))
+    }
+
+    test "Con 5 aciertos asiende a cebado" {
+        assert.equals(cebado, normal.estadoLuegoDeAcierto(5))
+    }
+    test "cuando Normal falla, pasa a Bajoneado."{
+        assert.equals(bajoneado, normal.estadoLuegoDeFallo())
+    }
+}
+
+describe "Estado Cebado" {
+    test "Con 6 aciertos permanece en cebado"{
+        assert.equals(cebado,cebado.estadoLuegoDeAcierto(6))
+    }
+    test "Cuando cebado falla, vuelve a normal" {
+      assert.equals(normal,cebado.estadoLuegoDeFallo())
+    }
+}
+
+describe "Estado Bajoneado" {
+    test "Con 2 aciertos permanece bajoneado" {
+      assert.equals(bajoneado,bajoneado.estadoLuegoDeAcierto(2))
+    }
+    test "Con 3 aciertos vuelve a Norma" {
+      assert.equals(normal,bajoneado.estadoLuegoDeAcierto(3))
+    }
+    test "Cuando Bajoneado falla permanece Bajoneado" {
+      assert.equals(bajoneado,bajoneado.estadoLuegoDeFallo())
+    }
+}

@@ -19,7 +19,58 @@ class Estado{
     }
 }
 
-const normal = new Estado(sumaPorAcierto = 1, restaPorFallo = 1, cambiaDeEstadoDespuesDe = 5)
-const cebado = new Estado(sumaPorAcierto = 5, restaPorFallo = 3, cambiaDeEstadoDespuesDe = 0)
-const bajoneado = new Estado(sumaPorAcierto = 0, restaPorFallo = 2, cambiaDeEstadoDespuesDe = 3)
+//const normal = new Estado(sumaPorAcierto = 1, restaPorFallo = 1, cambiaDeEstadoDespuesDe = 5)
+//const cebado = new Estado(sumaPorAcierto = 5, restaPorFallo = 3, cambiaDeEstadoDespuesDe = 0)
+//const bajoneado = new Estado(sumaPorAcierto = 0, restaPorFallo = 2, cambiaDeEstadoDespuesDe = 3)
  
+object normal inherits Estado(
+    sumaPorAcierto = 1,
+    restaPorFallo = 1,
+    cambiaDeEstadoDespuesDe = 5
+) {
+    method estadoLuegoDeAcierto(racha) {
+        if(racha>= cambiaDeEstadoDespuesDe){
+            return cebado
+        }
+        else{
+            return self
+        }
+    }
+    
+    method estadoLuegoDeFallo() {
+        return bajoneado
+    }
+}
+
+object cebado inherits Estado(
+    sumaPorAcierto = 5,
+    restaPorFallo = 3,
+    cambiaDeEstadoDespuesDe = 0
+) {
+    method estadoLuegoDeAcierto(racha) {
+        return self
+    }
+    
+    method estadoLuegoDeFallo() {
+        return normal
+    }
+}
+
+object bajoneado inherits Estado(
+    sumaPorAcierto = 0,
+    restaPorFallo = 2,
+    cambiaDeEstadoDespuesDe = 3
+) {
+    method estadoLuegoDeAcierto(racha) {
+        if(racha>= cambiaDeEstadoDespuesDe){
+            return normal
+        }
+        else{
+            return self
+        }
+    }
+    
+    method estadoLuegoDeFallo() {
+        return self
+    }
+}

@@ -4,21 +4,21 @@ import src.jugador.*
 import src.estados.*
 
 object barraDeProgreso {
-    const meta = 10000
-    var progreso = 1
+    const meta = 100
+    var progresoActual = 0
 
 //Getters
-    method progreso() = progreso
+    method progresoActual() = progresoActual
     method meta() = meta 
 
 //Funciones
     method aumentarProgreso(unaCantidad) {
-        progreso = (progreso + unaCantidad).min(meta)
+        progresoActual = (progresoActual + unaCantidad).min(meta)
     }
 
     method disminuirProgreso(unaCantidad) {
-        progreso = (progreso - unaCantidad).max(0)
+        progresoActual = (progresoActual - unaCantidad).max(0)
     }
 
-    method estaCompleta() = progreso == meta
+    method estaCompleta() = progresoActual == meta
 }

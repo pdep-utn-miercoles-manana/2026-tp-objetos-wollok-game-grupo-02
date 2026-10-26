@@ -5,14 +5,23 @@ import src.eventos.*
 
 object jugador {
     var estado = normal
-    var racha = 1 
+    var racha = 0
 
     method acertar() {
         estado.procesarAcierto()
+        self.aumentarRacha()
+        self.cambiarEstado(
+            estado.estadoLuegoDeAcierto(racha)
+        )
+        
     }
 
     method errar() {
         estado.procesarFallo()
+        self.reestablecerRacha()
+        self.cambiarEstado(
+            estado.estadoLuegoDeFallo() 
+        )
     }
 
     method aumentarRacha() {
@@ -27,6 +36,11 @@ object jugador {
         estado = unEstado       
     }
 
+    //Los implemente para los tests
+    method estadoActual() = estado
+    method rachaActual() = racha
+
+/*
     method puedeCambiarDeEstado() = estado.cambiaDeEstadoDespuesDe() == racha 
 
     method pasarAlSiguienteEstado() { //Ya sabemos que esto va a volar
@@ -45,4 +59,26 @@ object jugador {
             self.cambiarEstado(normal)
       }
     }
+}
+
+Vamos a usar el patrón State:
+Queríamos que cada estado se encargara de determinar cuándo corresponde cambiar a otro.
+Pero en este código sucede lo contrario.
+Jugador está preguntando:
+¿Estoy en Normal?
+¿Estoy en Cebado?
+¿Estoy en Bajoneado?
+Y después decide qué hacer.
+Esto es justamente lo que queríamos evitar mediante el polimorfismo.
+¿Por qué es un problema?
+Imaginemos que mañana agregamos un cuarto estado llamado Motivado.
+Tendríamos que volver a modificar Jugador y agregar otro if.
+En cambio, si delegamos las transiciones a los estados, Jugador no necesita conocer las reglas particulares de cada uno.
+Mi recomendación es trasladar esa responsabilidad a los estados.
+Eso sí: utilizar if dentro de un estado para evaluar una condición como racha >= 5 es perfectamente válido.
+
+*/
+
+
+
 }
