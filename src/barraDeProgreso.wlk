@@ -1,4 +1,4 @@
-import src.interfazPrincipal.*
+import src.juego.*
 import src.eventos.*
 import src.jugador.*
 import src.estados.*

@@ -1,5 +1,5 @@
 import src.jugador.*
-import src.interfazPrincipal.*
+import src.juego.*
 import src.barraDeProgreso.*
 import  src.estados.*
 

@@ -1,4 +1,4 @@
-import src.interfazPrincipal.*
+import src.juego.*
 import src.barraDeProgreso.*
 import src.estados.*
 import src.eventos.*
@@ -9,25 +9,23 @@ object jugador {
 
     //PREGUNTAR, DEVOLVEMOS UN RESULTADO Y TAMBIEN MODIFICAMOS, ESTA BIEN??
     method acertar() {
-         
-        const puntos = estado.sumaPorAcierto()
 
         self.aumentarRacha() //Aumenta la racha
         self.cambiarEstado( //Cambia de estado
             estado.estadoLuegoDeAcierto(racha) //Evalua en base a la racha que estado tiene que estar
         ) 
-        return puntos
         
     }
 
+    method puntosPorAcierto() = estado.sumaPorAcierto()
+
     method errar() {
-        const puntos = estado.restaPorFallo()
         self.reestablecerRacha()
         self.cambiarEstado(
             estado.estadoLuegoDeFallo() 
         )
-        return puntos
     }
+    method puntosPorFallo() = estado.restaPorFallo()
 
     method aumentarRacha() {
         racha += 1
@@ -38,7 +36,10 @@ object jugador {
     }
 
     method cambiarEstado(unEstado) {
-        estado = unEstado       
+        if (estado != unEstado) {
+            estado = unEstado
+            self.reestablecerRacha()
+        }
     }
 
     //Los implemente para los tests
@@ -47,6 +48,7 @@ object jugador {
 
 /*
     method puedeCambiarDeEstado() = estado.cambiaDeEstadoDespuesDe() == racha 
+    
 
     method pasarAlSiguienteEstado() { //Ya sabemos que esto va a volar
       if(estado == normal){

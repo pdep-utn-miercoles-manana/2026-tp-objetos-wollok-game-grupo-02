@@ -1,0 +1,19 @@
+import wollok.game.*
+import src.jugador.*
+import src.juego.*
+import src.barraDeProgreso.*
+import  src.estados.*
+import src.eventos.*
+program espadaEnLaPiedra {
+  
+    keyboard.up().onPressDo {
+    juego.procesarDireccion("Arriba")
+  }
+
+
+  juego.iniciarPartida()
+  game.addVisual(flechaEnPantalla)
+  game.start()
+
+
+}

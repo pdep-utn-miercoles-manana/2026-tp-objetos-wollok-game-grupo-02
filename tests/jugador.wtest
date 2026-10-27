@@ -48,6 +48,15 @@ describe "Jugador" {
     assert.equals(normal, jugador.estadoActual())
    }
 
+  test "Al salir de Bajoneado se reinicia la racha" {
+    jugador.errar()
+    jugador.acertar()
+    jugador.acertar()
+    jugador.acertar()
+
+    assert.equals(0, jugador.rachaActual())
+}
+
 
 }
 
