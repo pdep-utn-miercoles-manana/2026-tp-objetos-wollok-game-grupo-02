@@ -1,10 +1,8 @@
-import src.barraDeProgreso.*
-import src.eventos.*
-import src.jugador.*
-
-object verificadorDeDesafio{ //se encargaría de conocer qué flecha debe presionar el jugador y determinar si una entrada es correcta.
+object verificadorDeDesafio {
     const direcciones = ["arriba", "abajo", "izquierda", "derecha"]
-    var direccionCorrecta = "arriba"
+    var direccionCorrecta = direcciones.anyOne()
+
+    method direccionActual() = direccionCorrecta
 
     method esCorrecta(direccionPresionada) = direccionPresionada == direccionCorrecta
 
@@ -12,10 +10,14 @@ object verificadorDeDesafio{ //se encargaría de conocer qué flecha debe presio
         direccionCorrecta = nuevaDireccion
     }
 
-    method generarDireccion() {
+    // Elige cualquier direccion aleatoria (para arrancar la partida)
+    method reiniciar() {
         self.cambiarDireccion(direcciones.anyOne())
-
     }
 
-
+    // Elige una direccion aleatoria diferente a la actual (para cambiar al acertar)
+    method generarDireccion() {
+        const posibles = direcciones.filter({ d => d != direccionCorrecta })
+        self.cambiarDireccion(posibles.anyOne())
+    }
 }

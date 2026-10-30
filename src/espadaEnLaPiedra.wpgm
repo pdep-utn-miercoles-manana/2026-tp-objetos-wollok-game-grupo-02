@@ -1,19 +1,32 @@
 import wollok.game.*
-import src.jugador.*
 import src.juego.*
-import src.barraDeProgreso.*
-import  src.estados.*
 import src.eventos.*
+
 program espadaEnLaPiedra {
-  
-    keyboard.up().onPressDo {
-    juego.procesarDireccion("Arriba")
-  }
+  game.title("La Espada en la Piedra")
+  game.width(10)
+  game.height(10)
 
+  // Mapeo de teclas direccionales
+  keyboard.up().onPressDo { juego.procesarDireccion("arriba") }
+  keyboard.down().onPressDo { juego.procesarDireccion("abajo") }
+  keyboard.left().onPressDo { juego.procesarDireccion("izquierda") }
+  keyboard.right().onPressDo { juego.procesarDireccion("derecha") }
 
-  juego.iniciarPartida()
+  // Tecla para reiniciar la partida
+  keyboard.space().onPressDo { juego.reiniciarPartida() }
+
+  // Elementos visuales en el tablero
   game.addVisual(flechaEnPantalla)
+  game.addVisual(visualProgreso)
+  game.addVisual(visualPuntos)
+  game.addVisual(visualRacha)
+  game.addVisual(visualEstado)
+  game.addVisual(cartelVictoria)
+  game.addVisual(cartelReinicio)
+
+  // Inicializa la partida
+  juego.iniciarPartida()
+
   game.start()
-
-
 }

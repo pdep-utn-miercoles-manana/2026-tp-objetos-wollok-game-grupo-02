@@ -3,32 +3,30 @@ import src.juego.*
 import src.barraDeProgreso.*
 import src.eventos.*
 
-class Estado{
+class Estado {
     const sumaPorAcierto
     const restaPorFallo 
     const cambiaDeEstadoDespuesDe
 
     method cambiaDeEstadoDespuesDe() = cambiaDeEstadoDespuesDe 
 
-    //getter
     method sumaPorAcierto() = sumaPorAcierto
     method restaPorFallo() = restaPorFallo
-}
 
-//const normal = new Estado(sumaPorAcierto = 1, restaPorFallo = 1, cambiaDeEstadoDespuesDe = 5)
-//const cebado = new Estado(sumaPorAcierto = 5, restaPorFallo = 3, cambiaDeEstadoDespuesDe = 0)
-//const bajoneado = new Estado(sumaPorAcierto = 0, restaPorFallo = 2, cambiaDeEstadoDespuesDe = 3)
+    method nombre()
+}
  
 object normal inherits Estado(
     sumaPorAcierto = 1,
     restaPorFallo = 1,
     cambiaDeEstadoDespuesDe = 5
 ) {
+    override method nombre() = "Normal"
+
     method estadoLuegoDeAcierto(racha) {
-        if(racha>= cambiaDeEstadoDespuesDe){
+        if (racha >= cambiaDeEstadoDespuesDe) {
             return cebado
-        }
-        else{
+        } else {
             return self
         }
     }
@@ -43,6 +41,8 @@ object cebado inherits Estado(
     restaPorFallo = 3,
     cambiaDeEstadoDespuesDe = 0
 ) {
+    override method nombre() = "Cebado"
+
     method estadoLuegoDeAcierto(racha) {
         return self
     }
@@ -57,11 +57,12 @@ object bajoneado inherits Estado(
     restaPorFallo = 2,
     cambiaDeEstadoDespuesDe = 3
 ) {
+   override method nombre() = "Bajoneado"
+
     method estadoLuegoDeAcierto(racha) {
-        if(racha>= cambiaDeEstadoDespuesDe){
+        if (racha >= cambiaDeEstadoDespuesDe) {
             return normal
-        }
-        else{
+        } else {
             return self
         }
     }

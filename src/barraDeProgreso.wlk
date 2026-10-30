@@ -21,4 +21,8 @@ object barraDeProgreso {
     }
 
     method estaCompleta() = progresoActual == meta
+
+    method reiniciar() {
+        progresoActual = 0
+    }
 }

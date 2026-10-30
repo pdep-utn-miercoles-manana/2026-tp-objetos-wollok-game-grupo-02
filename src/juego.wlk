@@ -1,15 +1,14 @@
 import src.barraDeProgreso.*
 import src.eventos.*
 import src.jugador.*
-import desafio.*
+import src.desafio.*
 
-
-//Juego se encargaría de recibir el resultado y coordinar el acierto o el error.
+// Juego se encarga de recibir el input, coordinar aciertos/fallos y controlar el estado de la partida
 object juego {
-  const barraProgreso= barraDeProgreso
+  const barraProgreso = barraDeProgreso
   const player = jugador
 
-  method procesarAcierto(){
+  method procesarAcierto() {
     const puntos = player.puntosPorAcierto()
     player.acertar()
     barraProgreso.aumentarProgreso(puntos)
@@ -22,15 +21,26 @@ object juego {
   }
 
   method procesarDireccion(direccionPresionada) {
-    if(verificadorDeDesafio.esCorrecta(direccionPresionada)){
-      self.procesarAcierto()
+    if (not self.estaTerminado()) {
+      if (verificadorDeDesafio.esCorrecta(direccionPresionada)) {
+        self.procesarAcierto()
+      } else {
+        self.procesarFallo()
+      }
+      // Cambia a la siguiente direccion tanto si acierta como si falla:
+      verificadorDeDesafio.generarDireccion()
     }
-    else{
-      self.procesarFallo()
-    }
-
   }
 
+  method estaTerminado() = barraProgreso.estaCompleta()
 
+  method iniciarPartida() {
+    self.reiniciarPartida()
+  }
+
+  method reiniciarPartida() {
+    barraProgreso.reiniciar()
+    player.reiniciar()
+    verificadorDeDesafio.reiniciar()
+  }
 }
-
