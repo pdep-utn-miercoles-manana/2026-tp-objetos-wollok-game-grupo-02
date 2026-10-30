@@ -2,6 +2,8 @@ import src.jugador.*
 import src.juego.*
 import src.barraDeProgreso.*
 import  src.estados.*
+import src.desafio.*
+
 
 
 describe "Juego" {
@@ -48,4 +50,81 @@ describe "Juego" {
     juego.procesarFallo()
     assert.equals(1, barraDeProgreso.progresoActual())
   }
+}
+
+describe "Victoria y reinicio" {
+
+    test "El juego no comienza terminado" {
+        juego.reiniciarPartida()
+
+        assert.notThat(juego.estaTerminado())
+    }
+
+    test "El juego termina al alcanzar 100 puntos" {
+        juego.reiniciarPartida()
+        barraDeProgreso.aumentarProgreso(100)
+
+        assert.that(juego.estaTerminado())
+    }
+
+    test "No se procesan aciertos despues de ganar" {
+        juego.reiniciarPartida()
+        barraDeProgreso.aumentarProgreso(100)
+
+        const direccion = verificadorDeDesafio.direccionActual()
+        juego.procesarDireccion(direccion)
+
+        assert.equals(0, jugador.rachaActual())
+    }
+
+    test "No se procesan errores despues de ganar" {
+        juego.reiniciarPartida()
+        barraDeProgreso.aumentarProgreso(100)
+
+        const correcta = verificadorDeDesafio.direccionActual()
+        const incorrecta = if (correcta == "arriba") "abajo" else "arriba"
+
+        juego.procesarDireccion(incorrecta)
+
+        assert.equals(normal, jugador.estadoActual())
+    }
+
+    test "Reiniciar restablece los puntos" {
+        juego.reiniciarPartida()
+        barraDeProgreso.aumentarProgreso(100)
+
+        juego.reiniciarPartida()
+
+        assert.equals(0, barraDeProgreso.progresoActual())
+    }
+
+    test "Reiniciar restablece la racha" {
+        juego.reiniciarPartida()
+
+        jugador.acertar()
+        jugador.acertar()
+        jugador.acertar()
+
+        juego.reiniciarPartida()
+
+        assert.equals(0, jugador.rachaActual())
+    }
+
+    test "Reiniciar restablece el estado Normal" {
+        juego.reiniciarPartida()
+        jugador.errar()
+
+        juego.reiniciarPartida()
+
+        assert.equals(normal, jugador.estadoActual())
+    }
+
+    test "Reiniciar permite volver a jugar" {
+        juego.reiniciarPartida()
+        barraDeProgreso.aumentarProgreso(100)
+
+        juego.reiniciarPartida()
+
+        assert.notThat(juego.estaTerminado())
+    }
 }

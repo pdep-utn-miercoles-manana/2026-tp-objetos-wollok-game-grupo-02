@@ -6,58 +6,18 @@ import src.desafio.*
 
 object flechaEnPantalla {
 
-    method position() = game.center()
+    method position() = game.at(4, 1)
 
-    method text() {
-        if (juego.estaTerminado()) return "★"
-        return self.simbolo(verificadorDeDesafio.direccionActual())
-    }
+    method image() {
+        if (juego.estaTerminado())
+            return "flechas/victoria.png"
 
-    method textColor() = if (juego.estaTerminado()) "FFFF00FF" else "FFFFFFFF"
-
-    method simbolo(direccion) {
-        if (direccion == "arriba") return "↑"
-        else if (direccion == "abajo") return "↓"
-        else if (direccion == "izquierda") return "←"
-        else return "→"
+        return "flechas/" +
+            verificadorDeDesafio.direccionActual() +
+            ".png"
     }
 }
 
-object visualProgreso {
-
-    method position() = game.at(1, game.height() - 1)
-
-    method text() = "Progreso: " + barraDeProgreso.progresoActual().toString() + "%"
-
-    method textColor() = "FFFFFFFF"
-}
-
-object visualPuntos {
-
-    method position() = game.at(1, game.height() - 2)
-
-    method text() = "Puntos: " + jugador.puntos().toString() + " / " + barraDeProgreso.meta().toString()
-
-    method textColor() = "FFFFFFFF"
-}
-
-object visualRacha {
-
-    method position() = game.at(1, game.height() - 3)
-
-    method text() = "Racha: " + jugador.rachaActual().toString()
-
-    method textColor() = "FFFFFFFF"
-}
-
-object visualEstado {
-
-    method position() = game.at(1, game.height() - 4)
-
-    method text() = "Estado: " + jugador.estadoActual().nombre()
-
-    method textColor() = "FFFFFFFF"
-}
 
 object cartelVictoria {
 

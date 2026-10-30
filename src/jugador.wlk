@@ -1,7 +1,4 @@
-import src.juego.*
-import src.barraDeProgreso.*
 import src.estados.*
-import src.eventos.*
 
 object jugador {
     var estado = normal
@@ -42,10 +39,10 @@ object jugador {
 
     method reiniciar() {
         self.cambiarEstado(normal)
+        self.reestablecerRacha()
     }
 
-    // El jugador conoce sus puntos a traves de la barra de progreso
-    method puntos() = barraDeProgreso.progresoActual()
+
 
     // Metodos para tests y visuales
     method estadoActual() = estado

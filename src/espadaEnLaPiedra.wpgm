@@ -1,11 +1,16 @@
 import wollok.game.*
 import src.juego.*
 import src.eventos.*
+import src.espadaVisual.*
+import barraVisual.*
+
 
 program espadaEnLaPiedra {
   game.title("La Espada en la Piedra")
   game.width(10)
   game.height(10)
+  game.cellSize(75)
+  game.boardGround("fondo_castillo.png")
 
   // Mapeo de teclas direccionales
   keyboard.up().onPressDo { juego.procesarDireccion("arriba") }
@@ -17,13 +22,12 @@ program espadaEnLaPiedra {
   keyboard.space().onPressDo { juego.reiniciarPartida() }
 
   // Elementos visuales en el tablero
+  game.addVisual(espadaVisual)
   game.addVisual(flechaEnPantalla)
-  game.addVisual(visualProgreso)
-  game.addVisual(visualPuntos)
-  game.addVisual(visualRacha)
-  game.addVisual(visualEstado)
+  game.addVisual(barraVisual)
   game.addVisual(cartelVictoria)
   game.addVisual(cartelReinicio)
+  
 
   // Inicializa la partida
   juego.iniciarPartida()
