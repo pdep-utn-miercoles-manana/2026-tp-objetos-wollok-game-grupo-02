@@ -3,6 +3,7 @@ import src.juego.*
 import src.eventos.*
 import src.espadaVisual.*
 import barraVisual.*
+import src.relojDelDesafio.*
 
 
 program espadaEnLaPiedra {
@@ -13,13 +14,26 @@ program espadaEnLaPiedra {
   game.boardGround("fondo_castillo.png")
 
   // Mapeo de teclas direccionales
-  keyboard.up().onPressDo { juego.procesarDireccion("arriba") }
-  keyboard.down().onPressDo { juego.procesarDireccion("abajo") }
-  keyboard.left().onPressDo { juego.procesarDireccion("izquierda") }
-  keyboard.right().onPressDo { juego.procesarDireccion("derecha") }
+keyboard.up().onPressDo {
+    relojDelDesafio.presionar("arriba")
+}
+
+keyboard.down().onPressDo {
+    relojDelDesafio.presionar("abajo")
+}
+
+keyboard.left().onPressDo {
+    relojDelDesafio.presionar("izquierda")
+}
+
+keyboard.right().onPressDo {
+    relojDelDesafio.presionar("derecha")
+}
 
   // Tecla para reiniciar la partida
-  keyboard.space().onPressDo { juego.reiniciarPartida() }
+keyboard.space().onPressDo {
+    relojDelDesafio.reiniciar()
+}
 
   // Elementos visuales en el tablero
   game.addVisual(espadaVisual)
@@ -31,6 +45,6 @@ program espadaEnLaPiedra {
 
   // Inicializa la partida
   juego.iniciarPartida()
-
+  relojDelDesafio.iniciar()
   game.start()
 }

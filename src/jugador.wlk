@@ -41,7 +41,9 @@ object jugador {
         self.cambiarEstado(normal)
         self.reestablecerRacha()
     }
+    
 
+    method tiempoParaResponder() = estado.tiempoParaResponder()
 
 
     // Metodos para tests y visuales

@@ -7,6 +7,7 @@ class Estado {
     const sumaPorAcierto
     const restaPorFallo 
     const cambiaDeEstadoDespuesDe
+    const tiempoParaResponder 
 
     method cambiaDeEstadoDespuesDe() = cambiaDeEstadoDespuesDe 
 
@@ -14,12 +15,15 @@ class Estado {
     method restaPorFallo() = restaPorFallo
 
     method nombre()
+
+    method tiempoParaResponder() = tiempoParaResponder
 }
  
 object normal inherits Estado(
     sumaPorAcierto = 1,
     restaPorFallo = 1,
-    cambiaDeEstadoDespuesDe = 5
+    cambiaDeEstadoDespuesDe = 5,
+    tiempoParaResponder = 900
 ) {
     override method nombre() = "Normal"
 
@@ -39,7 +43,8 @@ object normal inherits Estado(
 object cebado inherits Estado(
     sumaPorAcierto = 5,
     restaPorFallo = 3,
-    cambiaDeEstadoDespuesDe = 0
+    cambiaDeEstadoDespuesDe = 0,
+    tiempoParaResponder = 650
 ) {
     override method nombre() = "Cebado"
 
@@ -55,7 +60,8 @@ object cebado inherits Estado(
 object bajoneado inherits Estado(
     sumaPorAcierto = 0,
     restaPorFallo = 2,
-    cambiaDeEstadoDespuesDe = 3
+    cambiaDeEstadoDespuesDe = 3,
+    tiempoParaResponder = 900
 ) {
    override method nombre() = "Bajoneado"
 
