@@ -3,6 +3,7 @@ import src.juego.*
 import src.barraDeProgreso.*
 import src.jugador.*
 import src.desafio.*
+import src.relojDelDesafio.*
 
 object flechaEnPantalla {
 
@@ -10,14 +11,26 @@ object flechaEnPantalla {
 
     method image() {
         if (!juego.estaIniciado() || juego.estaTerminado())
-            return "flechas/victoria.png"
+            return "victoria.png"
 
-        return "flechas/" +
+        return
             verificadorDeDesafio.direccionActual() +
             ".png"
     }
 }
 
+object barraTiempoVisual {
+
+    method position() = game.at(4.3, 0.5)
+
+    method image() {
+        if (!juego.estaIniciado() || juego.estaTerminado() || !relojDelDesafio.estaEsperando())
+            return "tiempo_vacio.png"
+
+        const nivel = (relojDelDesafio.porcentajeTiempo() / 10).truncate(0).min(10).max(0)
+        return "tiempo_" + nivel.toString() + ".png"
+    }
+}
 
 object cartelVictoria {
 

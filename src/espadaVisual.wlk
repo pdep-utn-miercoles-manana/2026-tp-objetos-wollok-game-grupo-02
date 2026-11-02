@@ -8,18 +8,18 @@ import src.estados.*
 object espadaVisual {
     method position() = game.at(3, 3)
     method image() {
-    const tramo = (barraDeProgreso.progresoActual() / 10).truncate(0)
+    const tramo = (barraDeProgreso.progresoActual() / 10).truncate(0).max(0)
 
-    var prefijo = "espada/espada_"
+    var prefijo = "espada_"
 
     //if (jugador.estadoActual() == cebado) 
     if (jugador.estaEnEstado(cebado)) {
-        prefijo = "espada/espada_cebado_"
+        prefijo = "espada_cebado_"
     }
 
     //if (jugador.estadoActual() == bajoneado) 
     if (jugador.estaEnEstado(bajoneado)) {
-        prefijo = "espada/espada_bajoneado_"
+        prefijo = "espada_bajoneado_"
     }
 
     return prefijo + tramo.toString() + ".png"

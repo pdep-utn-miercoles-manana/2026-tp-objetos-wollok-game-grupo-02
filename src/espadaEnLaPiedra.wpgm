@@ -2,7 +2,7 @@ import wollok.game.*
 import src.juego.*
 import src.eventos.*
 import src.espadaVisual.*
-import barraVisual.*
+import src.barraVisual.*
 import src.relojDelDesafio.*
 
 
@@ -39,9 +39,13 @@ keyboard.right().onPressDo {
       }
   }
 
+  // Timer recurrente para actualizar el tiempo y la barra
+  game.onTick(50, "relojDesafioTick", { relojDelDesafio.avanzarTiempo() })
+
   // Elementos visuales en el tablero
   game.addVisual(espadaVisual)
   game.addVisual(flechaEnPantalla)
+  game.addVisual(barraTiempoVisual)
   game.addVisual(barraVisual)
   game.addVisual(cartelVictoria)
   game.addVisual(cartelDerrota)
