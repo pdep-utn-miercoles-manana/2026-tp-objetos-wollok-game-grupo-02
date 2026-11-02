@@ -1,3 +1,4 @@
+import src.relojDelDesafio.*
 import src.barraDeProgreso.*
 import src.eventos.*
 import src.jugador.*
@@ -7,7 +8,15 @@ import src.desafio.*
 object juego {
   const barraProgreso = barraDeProgreso
   const player = jugador
+  var iniciado = false
 
+  method estaIniciado() = iniciado 
+
+  method comenzarJuego() {
+    iniciado = true
+    self.reiniciarPartida()
+    relojDelDesafio.iniciar()
+  }
   method procesarAcierto() {
     const puntos = player.puntosPorAcierto()
     player.acertar()
@@ -32,11 +41,17 @@ object juego {
     }
   }
 
-  method estaTerminado() = barraProgreso.estaCompleta()
+  method estaTerminado() = self.estaGanado() || self.estaDerrotado()
 
+  method estaGanado() = barraProgreso.estaCompleta() 
+
+  method estaDerrotado() = iniciado && barraProgreso.progresoActual() == -1 && not self.estaGanado()
+/*
+El metodo queda totalmente obsoleto y en general era delegar algo que ya hacia otro metodo
   method iniciarPartida() {
     self.reiniciarPartida()
   }
+*/
 
   method reiniciarPartida() {
     barraProgreso.reiniciar()

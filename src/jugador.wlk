@@ -45,6 +45,7 @@ object jugador {
 
     method tiempoParaResponder() = estado.tiempoParaResponder()
 
+    method estaEnEstado(unEstado) = estado == unEstado //responde si el jugador esta en tal estado, con el objetivo de evitar preguntar en un if (jugador.estadoActual() == unEstado en especifico)
 
     // Metodos para tests y visuales
     method estadoActual() = estado

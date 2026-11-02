@@ -12,11 +12,13 @@ object espadaVisual {
 
     var prefijo = "espada/espada_"
 
-    if (jugador.estadoActual() == cebado) {
+    //if (jugador.estadoActual() == cebado) 
+    if (jugador.estaEnEstado(cebado)) {
         prefijo = "espada/espada_cebado_"
     }
 
-    if (jugador.estadoActual() == bajoneado) {
+    //if (jugador.estadoActual() == bajoneado) 
+    if (jugador.estaEnEstado(bajoneado)) {
         prefijo = "espada/espada_bajoneado_"
     }
 

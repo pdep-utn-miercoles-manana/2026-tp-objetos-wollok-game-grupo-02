@@ -17,7 +17,7 @@ object barraDeProgreso {
     }
 
     method disminuirProgreso(unaCantidad) {
-        progresoActual = (progresoActual - unaCantidad).max(0)
+        progresoActual = (progresoActual - unaCantidad).max(-1)
     }
 
     method estaCompleta() = progresoActual == meta

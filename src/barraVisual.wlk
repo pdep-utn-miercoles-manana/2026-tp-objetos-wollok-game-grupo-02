@@ -11,11 +11,13 @@ object barraVisual {
     const porcentaje = barraDeProgreso.progresoActual().truncate(0)
     var prefijo = "barra/barra_"
 
-    if (jugador.estadoActual() == cebado) {
+    //if (jugador.estadoActual() == cebado) 
+    if (jugador.estaEnEstado(cebado)) {
         prefijo = "barra/barra_cebado_"
     }
 
-    if (jugador.estadoActual() == bajoneado) {
+    //if (jugador.estadoActual() == bajoneado) 
+    if (jugador.estaEnEstado(bajoneado)) {
         prefijo = "barra/barra_bajoneado_"
     }
 

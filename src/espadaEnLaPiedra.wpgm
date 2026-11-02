@@ -30,21 +30,29 @@ keyboard.right().onPressDo {
     relojDelDesafio.presionar("derecha")
 }
 
-  // Tecla para reiniciar la partida
-keyboard.space().onPressDo {
-    relojDelDesafio.reiniciar()
-}
+// Tecla ESPACIO: Inicia el juego o lo reinicia si ya terminó
+  keyboard.space().onPressDo {
+      if (!juego.estaIniciado()) {
+          juego.comenzarJuego()
+      } else if (juego.estaTerminado()) {
+          relojDelDesafio.reiniciar()
+      }
+  }
 
   // Elementos visuales en el tablero
   game.addVisual(espadaVisual)
   game.addVisual(flechaEnPantalla)
   game.addVisual(barraVisual)
   game.addVisual(cartelVictoria)
+  game.addVisual(cartelDerrota)
   game.addVisual(cartelReinicio)
+  game.addVisual(cartelMenu)
   
-
+/*
   // Inicializa la partida
   juego.iniciarPartida()
   relojDelDesafio.iniciar()
+*/
+
   game.start()
 }

@@ -9,7 +9,7 @@ object flechaEnPantalla {
     method position() = game.at(4, 1)
 
     method image() {
-        if (juego.estaTerminado())
+        if (!juego.estaIniciado() || juego.estaTerminado())
             return "flechas/victoria.png"
 
         return "flechas/" +
@@ -21,18 +21,33 @@ object flechaEnPantalla {
 
 object cartelVictoria {
 
-    method position() = game.at(3, 3)
+    method position() = game.at(4.49, 7.5)
 
-    method text() = if (juego.estaTerminado()) "¡META ALCANZADA!" else ""
+    method text() = if (juego.estaGanado()) "                         ¡META ALCANZADA!" else "" //25 espacios
 
     method textColor() = "00FF00FF"
 }
 
+object cartelDerrota {
+    method position() = game.at(4.49, 7.5)
+    method text() = if (juego.estaDerrotado()) "                         ¡CASI INTENTA OTRA VEZ!" else ""
+    method textColor() = "FF0000FF" // Rojo para derrota
+}
+
 object cartelReinicio {
 
-    method position() = game.at(2, 2)
+    method position() = game.at(4.49, 2.4)
 
-    method text() = if (juego.estaTerminado()) "Presiona ESPACIO para reiniciar" else ""
+    method text() = if (juego.estaTerminado()) "                         Presiona ESPACIO para reiniciar" else "" //25 espacios
+
+    method textColor() = "FFFFFFFF"
+}
+
+object cartelMenu {
+
+    method position() = game.at(4.49, 2.4)
+
+    method text() = if (!juego.estaIniciado()) "                         Presiona ESPACIO para comenzar" else ""
 
     method textColor() = "FFFFFFFF"
 }

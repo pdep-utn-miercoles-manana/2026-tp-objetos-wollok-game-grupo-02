@@ -6,7 +6,7 @@ import src.eventos.*
 
 object relojDelDesafio {
 
-    var identificador = 0
+    var identificador = 0           //identifica los relojes por turnos
     var esperandoRespuesta = false
 
     method iniciar() {
