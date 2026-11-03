@@ -20,7 +20,6 @@ object relojDelDesafio {
     }
 
     method iniciar() {
-
         if (!juego.estaTerminado()) {
 
             identificadorDeTimer = identificadorDeTimer + 1

@@ -21,7 +21,7 @@ object flechaEnPantalla {
 
 object barraTiempoVisual {
 
-    method position() = game.at(4.3, 0.5)
+    method position() = game.at(4.3, 2)
 
     method image() {
         if (!juego.estaIniciado() || juego.estaTerminado() || !relojDelDesafio.estaEsperando())

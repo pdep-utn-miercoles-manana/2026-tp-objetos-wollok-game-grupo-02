@@ -44,8 +44,8 @@ keyboard.right().onPressDo {
   // Elementos visuales en el tablero
   game.addVisual(espadaVisual)
   game.addVisual(flechaEnPantalla)
-  game.addVisual(barraVisual)
   game.addVisual(barraTiempoVisual)
+  game.addVisual(barraVisual)
   game.addVisual(cartelVictoria)
   game.addVisual(cartelDerrota)
   game.addVisual(cartelReinicio)

@@ -8,7 +8,7 @@ object barraVisual {
     method position() = game.at(3, 9)
 
     method image() {
-    const porcentaje = barraDeProgreso.progresoActual().truncate(0)
+    const porcentaje = barraDeProgreso.progresoActual().truncate(0).max(0)
     var prefijo = "barra/barra_"
 
     //if (jugador.estadoActual() == cebado) 
