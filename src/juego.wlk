@@ -1,6 +1,6 @@
 import src.relojDelDesafio.*
 import src.barraDeProgreso.*
-import src.eventos.*
+import src.elementosVisuales.*
 import src.jugador.*
 import src.desafio.*
 
@@ -17,16 +17,19 @@ object juego {
     self.reiniciarPartida()
     relojDelDesafio.iniciar()
   }
+
   method procesarAcierto() {
     const puntos = player.puntosPorAcierto()
     player.acertar()
     barraProgreso.aumentarProgreso(puntos)
+    cartelFeedback.mostrarMensaje("+" + puntos, "00FF00FF")
   }
 
   method procesarFallo() {
     const puntos = player.puntosPorFallo()
     player.errar()
     barraProgreso.disminuirProgreso(puntos)
+    cartelFeedback.mostrarMensaje("-" + puntos, "FF0000FF")
   }
 
   method procesarDireccion(direccionPresionada) {
@@ -46,6 +49,7 @@ object juego {
   method estaGanado() = barraProgreso.estaCompleta() 
 
   method estaDerrotado() = iniciado && barraProgreso.progresoActual() == -1 && not self.estaGanado()
+  
 /*
 El metodo queda totalmente obsoleto y en general era delegar algo que ya hacia otro metodo
   method iniciarPartida() {

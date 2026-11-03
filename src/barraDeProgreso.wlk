@@ -1,5 +1,5 @@
 import src.juego.*
-import src.eventos.*
+import src.elementosVisuales.*
 import src.jugador.*
 import src.estados.*
 

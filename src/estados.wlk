@@ -1,7 +1,7 @@
 import src.jugador.*
 import src.juego.*
 import src.barraDeProgreso.*
-import src.eventos.*
+import src.elementosVisuales.*
 
 class Estado {
     const sumaPorAcierto
