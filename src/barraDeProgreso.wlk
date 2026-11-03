@@ -4,7 +4,7 @@ import src.jugador.*
 import src.estados.*
 
 object barraDeProgreso {
-    const meta = 1
+    const meta = 100
     var progresoActual = 0
 
 //Getters
